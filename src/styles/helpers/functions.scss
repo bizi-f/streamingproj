@@ -1,7 +1,7 @@
 @use "constants" as *;
 @use "sass:math";
 @function fluid($max: 100, $min: 10, $isEndOfLaptop: false) {
-  $maxViewportWidth: $container-desktops-width;
+  $maxViewportWidth: $container-desktop-width;
   $minViewportWidth: 390;
 
   @if ($isEndOfLaptop) {
