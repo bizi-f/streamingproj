@@ -1,1 +1,3 @@
-console.log("привет медвед")
+import OverlayMenu from "@/modules/OverlayMenu.js"
+
+new OverlayMenu()

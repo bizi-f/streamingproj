@@ -8,9 +8,11 @@ const Button = (props) => {
     href,
     target,
     label,
+    mode ="",
     isLabelHidden = false,
     iconName,
-    iconPosition = "before,", //before или after
+    iconPosition = "before", //before или after
+    hasFillIcon,
   } = props
   const isLink = href !== undefined
   const Component = isLink ? "a" : "button"
@@ -19,16 +21,28 @@ const Button = (props) => {
   const specificProps = isLink ? linkProps : buttonProps
   const title = isLabelHidden ? label : undefined
   const iconComponent = iconName && (
-    <Icon className="button__icon" name={iconName} />
+    <Icon
+      className="button__icon"
+      name={iconName}
+      hasFill = {hasFillIcon}
+    />
   )
   return (
     <Component
-      className={classNames(className, "button")}
+      className={classNames(
+        className,
+        "button",
+        {
+          [`button--${mode}`] : mode,
+        })}
       title={title}
       aria-label={title}
       {...specificProps}
     >
-      {!isLabelHidden && <span className="button__label">{label}</span>}
+      {iconPosition === "before" && iconComponent }
+      {!isLabelHidden && (
+        <span className="button__label">{label}</span>)}
+      {iconPosition === "after" && iconComponent }
     </Component>
   )
 }
